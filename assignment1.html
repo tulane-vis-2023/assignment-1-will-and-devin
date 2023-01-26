@@ -51,26 +51,41 @@
 	<script type="text/javascript" src="scores.js" charset="utf-8"></script>    
 	<h2>2a. Scatterplot</h2>
 
-    <svg id="Scatter" width="1050" height="1050">
-		<line x1 = "50" y1 = "1000" x2 = "50" y2 = "0" style = "stroke:black;stroke-width:3"/>
-		<line x1 = "50" y1 = "1000" x2 = "1050" y2 = "1000" style = "stroke:black;stroke-width:3"/>
-		<text x="0" y="500" fill="black">SATM</text>
-		<text x="550" y="1030" fill="black">SATV</text>
+    <svg id="Scatter" width="550" height="550">
+		<line x1 = "50" y1 = "500" x2 = "50" y2 = "0" style = "stroke:black;stroke-width:3"/>
+		<line x1 = "50" y1 = "500" x2 = "550" y2 = "500" style = "stroke:black;stroke-width:3"/>
 
+		<text x="0" y="250" fill="black">SATM</text>
+		<text x="300" y="515" fill="black">SATV</text>
+
+		<text x="15" y="485" fill="black">300</text>
+		<text x="65" y="515" fill="black">300</text>
+
+		<text x="15" y="15" fill="black">800</text>
+		<text x="500" y="515" fill="black">800</text>
+		
 		<script>
+			function rgb(r, g, b) {
+				r = Math.floor(r);
+				g = Math.floor(g);
+				b = Math.floor(b);
+				return ["rgba(",r,",",g,",",b,",",0.8,")"].join("");
+			  }
+
 			var svg_2a = document.getElementById("Scatter");
 
 			for (let i = 0; i < scores.length; i++) {
 				var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-				var x = scores[i].SATM
-				var y = scores[i].SATV
-				var r = (scores[i].ACT * 0.9523) - 9.2857  // Normalizing radius from [15, 36] => [5, 25]
-				var gpa = (scores[i].GPA * 0.5750) - 0.9775 // Normalizing opacity to [1.7, 4.0] => [0, 1]
+				var x = scores[i].SATM - 250;
+				var y = (scores[i].SATV * -1) + 800;
+				var r = (scores[i].ACT * 0.3809) - 3.7135;  // Normalizing radius from [15, 36] => (2, 10)
+				var gpa = (scores[i].GPA - 1.7) * 110.8695; // Normalizing color to (1.7, 4] => (0, 255)
+
 				circle.setAttribute("cx",x);
 				circle.setAttribute("cy",y);
 				circle.setAttribute("r",r);
-				circle.style.fill = "rgba(255,0,0,1.0)";
-				circle.setAttribute('opacity', gpa)
+				circle.style.fill = rgb(gpa, 0, 0)
+				
 				svg_2a.appendChild(circle);
 			}
 		</script>
@@ -79,9 +94,23 @@
 
 <div>
     <h2>2b. Color Justification</h2>
-
+	<p> 
+		For the color based on GPA, I decided to the RGB function to create a spectrum
+		of red colors ranging from fully saturation (255, 0, 0) to almost zero saturation (1, 0, 0) 
+		where a high saturation corresponds to a high GPA. This is effective for visualizing because 
+		it allows the GPA data tightly bounded by the range (1.7, 4.0] to be represented by the integer
+		range [1, 255]. In addition, I argue that red it the most vibrant of the three RGB colors, 
+		creating a greater distinction between fully saturated red to almost zero saturation red (or black).
+	</p>
 
     <h2>2c. Visualization Critique</h2>
+	<p> 
+		An effective component of the Visualization is plotting SATM and SATV on the X and Y axises respectivly.
+		There appears to be a positive coorlilation between the two attributes. Another noticable attribute is 
+		the ACT scores when fitted to SATM and SATV values. The ACT scores appear to trend upward as SATM and SATV
+		values increase. Finally, an ineffective part of the visualizaion is the GPA color mapping. There does 
+		not visually appear a space or data point size distigiushing diffirent GPAs.
+	</p>
 </div>
 </body>
 </html>
