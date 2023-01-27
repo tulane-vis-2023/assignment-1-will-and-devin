@@ -19,12 +19,28 @@
 	var data = [10,8,13,9,11,14,6,4,12,7,5];
 </script>
 
-
+<head>
+<style>
+.bar {
+		width 10 px; 
+		height 0 px; 
+		background-color red;
+		transition: height 0.5s;
+	}
+<head>
+<style>
 
 <div>	 
     <h2>1a. Bar Chart</h2>
-    <svg id="Bar" width="300" height="200"></svg>
-	 
+	
+<div id= "bar chart">
+	<div class = "bar" style="height: 10 px;"></div>
+<div>
+	
+	
+	
+	
+    <svg id="Bar" width="300" height="200"></svg> 
 	 <!-- Here is how you'd set a background rectangle programmatically with javascript.  Useful but not necessary for this assignment -->
 	 <script>
 		 var svg = document.getElementById("Bar");
