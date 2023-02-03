@@ -17,22 +17,20 @@
 
 <script>
   var data = [10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5];
-    var data = [10,8,13,9,11,14,6,4,12,7,5];
-    var svg = document.querySelector('#Bar');
-    var barWidth = 30;
-    var barMargin = 10;
-    var barHeightMultiplier = 20 / 14;
-    
-    for (var i = 0; i < data.length; i++) {
-      var bar = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      bar.setAttribute('x', i * (barWidth + barMargin));
-      bar.setAttribute('y', 200 - (data[i] * barHeightMultiplier));
-      bar.setAttribute('width', barWidth);
-      bar.setAttribute('height', data[i] * barHeightMultiplier);
-      bar.setAttribute('fill', 'blue');
-      svg.appendChild(bar);
-    }
-  </script>
+  var barPadding = 5;
+  var barWidth = (300 - (data.length - 1) * barPadding) / data.length;
+
+  var svg = d3.select("#Bar");
+
+  data.forEach(function(d, i) {
+    svg.append("rect")
+      .attr("x", i * (barWidth + barPadding))
+      .attr("y", 200 - d * 10)
+      .attr("width", barWidth)
+      .attr("height", d * 10)
+      .attr("fill", "blue");
+});
+</script>
 
 <div>
   <h2>1a. Bar Chart</h2>
