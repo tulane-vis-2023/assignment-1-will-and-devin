@@ -15,27 +15,35 @@
 
 <br/>
 
-<script>
-  var data = [10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5];
-  var barPadding = 5;
-  var barWidth = (300 - (data.length - 1) * barPadding) / data.length;
-
-  var svg = d3.select("#Bar");
-
-  data.forEach(function(d, i) {
-    svg.append("rect")
-      .attr("x", i * (barWidth + barPadding))
-      .attr("y", 200 - d * 10)
-      .attr("width", barWidth)
-      .attr("height", d * 10)
-      .attr("fill", "blue");
-});
-</script>
-
 <div>
   <h2>1a. Bar Chart</h2>
 	
   <svg id="Bar" width="300" height="200"></svg>
+  <script>
+	var data = [10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5];
+
+	var svg_1a = document.getElementById("BarChart");
+
+	for (let i = 0; i < data.length; i++) {
+		var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+
+		var width = 18.9873;
+		var height = data[i] * 10;
+		var x = (i * width) + (width / 2.5);
+		var y = 200 - height;
+
+		rect.setAttribute("cx",x);
+		rect.setAttribute("cy",y);
+		rect.setAttribute("height", height);
+		rect.setAttribute("width", width);
+		rect.style.fill = "red";
+		rect.appendChild(rect);
+
+
+
+	}
+  
+  </script>
 </div>
 
 <div>
