@@ -19,13 +19,35 @@
 	var data = [10,8,13,9,11,14,6,4,12,7,5];
 </script>
 
-<div>	 
-    <h2>1a. Bar Chart</h2>	
-    <svg id="Bar" width="300" height="200"></svg> 
-	
-	<rect x="50" y="190" width="30" height="-10" style="fill:red;" />
-	
-    </svg>
+<div>
+  <h2>1a. Bar Chart</h2>
+  <svg id="Bar" width="300" height="200"></svg>
+  
+  <script>
+    var svg = document.querySelector('#Bar');
+    var barWidth = 30;
+    var barMargin = 10;
+    var barHeightMultiplier = 20 / 14;
+    
+    var bar1 = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    bar1.setAttribute('x', 0);
+    bar1.setAttribute('y', 200 - (10 * barHeightMultiplier));
+    bar1.setAttribute('width', barWidth);
+    bar1.setAttribute('height', 10 * barHeightMultiplier);
+    bar1.setAttribute('fill', 'blue');
+    svg.appendChild(bar1);
+    
+    var bar2 = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    bar2.setAttribute('x', (barWidth + barMargin));
+    bar2.setAttribute('y', 200 - (8 * barHeightMultiplier));
+    bar2.setAttribute('width', barWidth);
+    bar2.setAttribute('height', 8 * barHeightMultiplier);
+    bar2.setAttribute('fill', 'blue');
+    svg.appendChild(bar2);
+    
+    // Add the remaining bars manually...
+  </script>
+</div>
 
 	 <!-- Here is how you'd set a background rectangle programmatically with javascript.  Useful but not necessary for this assignment -->
 	 <script>
