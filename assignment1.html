@@ -19,55 +19,84 @@
   <h2>1a. Bar Chart</h2>
 	
   <svg id="Bar" width="300" height="200"></svg>
+
   <script>
 	var data = [10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5];
 
-	var svg_1a = document.getElementById("BarChart");
+	var svg_1a = document.getElementById("Bar");
+
+	var box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+	box.setAttribute("x",0);
+	box.setAttribute("y",0);
+	box.setAttribute("height", 200);
+	box.setAttribute("width", 300);
+	box.style.fill = "white";
+	box.style.stroke = "#000000"; 
+	box.style.strokeWidth = "2px";
+	svg_1a.appendChild(box);
 
 	for (let i = 0; i < data.length; i++) {
 		var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
 
-		var width = 18.9873;
-		var height = data[i] * 10;
-		var x = (i * width) + (width / 2.5);
+		var width = 10;
+		var height = 10 * data[i];
+		var x = 26.3636 * i + width
 		var y = 200 - height;
 
-		rect.setAttribute("cx",x);
-		rect.setAttribute("cy",y);
+		rect.setAttribute("x",x);
+		rect.setAttribute("y",y);
 		rect.setAttribute("height", height);
 		rect.setAttribute("width", width);
 		rect.style.fill = "red";
-		rect.appendChild(rect);
-
-
-
+		rect.style.stroke = "#000000"; //Set stroke colour
+		rect.style.strokeWidth = "1px";
+		svg_1a.appendChild(rect);
 	}
   
   </script>
+
 </div>
 
-<div>
-
-	 <!-- Here is how you'd set a background rectangle programmatically with javascript.  Useful but not necessary for this assignment -->
-	 <script>
-		 var svg = document.getElementById("Bar");
-		 var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'rect'); //Create a path in SVG's namespace
-		 newElement.setAttribute("x","0");
-		 newElement.setAttribute("y","0"); 
-		 newElement.setAttribute("width","300");
-		 newElement.setAttribute("height","200"); 
-		 newElement.style.fill = "white"; //Set stroke colour
-		 newElement.style.stroke = "#000000"; //Set stroke colour
-		 newElement.style.strokeWidth = "1px"; //Set stroke width
-		 svg.appendChild(newElement);
-	 </script>
-		 
-</div>
 
 <div>
     <h2>1b. Line Chart</h2>
 
     <svg id="Line" width="300" height="200"></svg>
+
+	<script>
+		var data = [10, 8, 13, 9, 11, 14, 6, 4, 12, 7, 5];
+	
+		var svg_1b = document.getElementById("Line");
+	
+		var box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+		box.setAttribute("x",0);
+		box.setAttribute("y",0);
+		box.setAttribute("height", 200);
+		box.setAttribute("width", 300);
+		box.style.fill = "white";
+		box.style.stroke = "#000000"; 
+		box.style.strokeWidth = "2px";
+		svg_1b.appendChild(box);
+	
+		for (let i = 0; i < data.length-1; i++) {
+			var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+	
+			var x1 = 26.3636 * i + 10;
+			var y1 = 200 - (10 * data[i]);
+
+			var x2 = 26.3636 * (i + 1) + 10;
+			var y2 = 200 - (10 * data[i+1]);
+
+	
+			line.setAttribute('x1',x1);
+			line.setAttribute('y1',y1);
+			line.setAttribute('x2',x2);
+			line.setAttribute('y2',y2);
+			line.setAttribute("stroke", "blue");
+			svg_1b.appendChild(line);
+		}
+	  
+	  </script>
 </div>
 
 <div>
@@ -132,7 +161,7 @@
 		There appears to be a positive coorlilation between the two attributes. Another noticable attribute is 
 		the ACT scores when fitted to SATM and SATV values. The ACT scores appear to trend upward as SATM and SATV
 		values increase. Finally, an ineffective part of the visualizaion is the GPA color mapping. There does 
-		not visually appear a space or data point size distigiushing diffirent GPAs.
+		not visually appear a space or data point size distigiushing different GPAs.
 	</p>
 </div>
 </body>
